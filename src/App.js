@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
+import Cards from './components/Cards/index.js';
+import Chart from './components/Chart/index.js';
+import CountryPicker from './components/CountryPicker/index.js';
+import axios from 'axios';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      confirmed: '',
+      recovered: '',
+      deaths: '',
+      lastUpdate: ''
+    }
+  };
+  componentDidMount(){
+    const url = "https://covid19.mathdro.id/api";
+    axios.get(url).then((res) => {
+      let { confirmed, recovered, deaths, lastUpdate } = res.data;
+      this.setState({
+        confirmed,
+        recovered,
+        deaths,
+        lastUpdate
+      })
+    }).catch((err) =>{
+      console.log(err)
+    })
+  }
+  render(){
+    return (
+      <div className="container">
+        <Cards data={this.state} />
+        {/* <Chart />
+        <CountryPicker /> */}
+      </div>
+    );
+  }
 }
 
 export default App;
