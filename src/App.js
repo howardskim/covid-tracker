@@ -23,7 +23,8 @@ class App extends React.Component{
     if(country === 'global'){
       this.setState({
         country: ''
-      })
+      });
+      this.fetchAllData();
     } else {
       const response = await axios.get(`${this.state.url}/countries/${country}`);
       let { confirmed, recovered, deaths, lastUpdate } = response.data;

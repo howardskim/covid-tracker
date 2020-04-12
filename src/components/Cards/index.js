@@ -20,11 +20,10 @@ export default function Cards(props) {
             <CardContent>
               <Typography color="textSecondary" gutterBottom>Infected</Typography>
               <Typography variant="h5" gutterBottom>
-                  {/* {commafy(infected.value) || ''} */}
                   <CountUp 
                     start={0}
                     end={infected.value || 0}
-                    duration={2.5}
+                    duration={1.5}
                     separator=","
                   />
               </Typography>
@@ -37,11 +36,10 @@ export default function Cards(props) {
             <CardContent>
               <Typography color="textSecondary" gutterBottom>Recovered</Typography>
               <Typography variant="h5" gutterBottom>
-                  {/* {commafy(recovered.value )|| ''}   */}
                 <CountUp 
                     start={0}
                     end={recovered.value || 0}
-                    duration={2}
+                    duration={1.5}
                     separator=","
                 />
                 </Typography>
@@ -54,11 +52,10 @@ export default function Cards(props) {
             <CardContent>
               <Typography color="textSecondary" gutterBottom>Deaths</Typography>
               <Typography variant="h5" gutterBottom>
-                  {/* {commafy(deaths.value) || ''} */}
                 <CountUp 
                     start={0}
                     end={deaths.value || 0}
-                    duration={2.5}
+                    duration={1.5}
                     separator=","
                 />
                   </Typography>

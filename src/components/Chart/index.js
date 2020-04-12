@@ -5,7 +5,6 @@ import styles from './Chart.module.css';
 
 
 export default function Chart(props) {
-    console.log(props)
     const [dailyData, setDailyData] = useState([]);
     const url = "https://covid19.mathdro.id/api";
 
