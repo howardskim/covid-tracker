@@ -6,7 +6,6 @@ import CountUp from 'react-countup';
 import cx from 'classnames';
 
 export default function Cards(props) {
-    console.log(props)
     let{ confirmed: infected, recovered, deaths, lastUpdate } = props.data;
     if(!props.data) return <h1>Loading...</h1>
     const commafy = (value) => {

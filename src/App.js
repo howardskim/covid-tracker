@@ -13,14 +13,17 @@ class App extends React.Component{
       recovered: '',
       deaths: '',
       lastUpdate: '',
-      url: "https://covid19.mathdro.id/api"
+      url: "https://covid19.mathdro.id/api",
+      dailyData: []
     }
   };
   fetchDailyData = async () => {
     try
     {
       const response = await axios.get(`${this.state.url}/daily`);
-      console.log(response.data);
+      this.setState({
+        dailyData: response.data
+      })
     }
     catch(err)
     {
@@ -42,14 +45,14 @@ class App extends React.Component{
   }
   componentDidMount(){
     this.fetchAllData();
-    this.fetchDailyData();
+    // this.fetchDailyData();
   }
   render(){
     return (
       <div className="container">
         <Cards data={this.state} />
-        {/* <Chart />
-        <CountryPicker /> */}
+        <CountryPicker />
+        <Chart data={this.state.dailyData}/>
       </div>
     );
   }
