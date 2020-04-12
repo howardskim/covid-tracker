@@ -12,12 +12,23 @@ class App extends React.Component{
       confirmed: '',
       recovered: '',
       deaths: '',
-      lastUpdate: ''
+      lastUpdate: '',
+      url: "https://covid19.mathdro.id/api"
     }
   };
-  componentDidMount(){
-    const url = "https://covid19.mathdro.id/api";
-    axios.get(url).then((res) => {
+  fetchDailyData = async () => {
+    try
+    {
+      const response = await axios.get(`${this.state.url}/daily`);
+      console.log(response.data);
+    }
+    catch(err)
+    {
+      console.log(err)
+    }
+  }
+  fetchAllData = () => {
+    axios.get(this.state.url).then((res) => {
       let { confirmed, recovered, deaths, lastUpdate } = res.data;
       this.setState({
         confirmed,
@@ -28,6 +39,10 @@ class App extends React.Component{
     }).catch((err) =>{
       console.log(err)
     })
+  }
+  componentDidMount(){
+    this.fetchAllData();
+    this.fetchDailyData();
   }
   render(){
     return (
