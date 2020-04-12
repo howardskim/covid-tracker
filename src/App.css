@@ -12,3 +12,13 @@ body{
   align-items: center;
   justify-content: center;
 }
+.image{
+  width: 370px;
+  margin-top: 50px;
+}
+
+@media(max-width: 770px) {
+  .image{
+    width: 80%;
+  }
+}

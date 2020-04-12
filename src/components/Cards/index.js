@@ -35,7 +35,7 @@ export default function Cards(props) {
         <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.recovered)}>
 
             <CardContent>
-              <Typography color="textSecondary" gutterBottom>Infected</Typography>
+              <Typography color="textSecondary" gutterBottom>Recovered</Typography>
               <Typography variant="h5" gutterBottom>
                   {/* {commafy(recovered.value )|| ''}   */}
                 <CountUp 
@@ -52,7 +52,7 @@ export default function Cards(props) {
         <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.deaths)}>
 
             <CardContent>
-              <Typography color="textSecondary" gutterBottom>Infected</Typography>
+              <Typography color="textSecondary" gutterBottom>Deaths</Typography>
               <Typography variant="h5" gutterBottom>
                   {/* {commafy(deaths.value) || ''} */}
                 <CountUp 

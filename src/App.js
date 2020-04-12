@@ -4,6 +4,7 @@ import Chart from './components/Chart/index.js';
 import CountryPicker from './components/CountryPicker/index.js';
 import axios from 'axios';
 import './App.css';
+import image from './images/image.png'
 
 class App extends React.Component{
   constructor(props){
@@ -14,9 +15,27 @@ class App extends React.Component{
       deaths: '',
       lastUpdate: '',
       url: "https://covid19.mathdro.id/api",
-      dailyData: []
+      dailyData: [],
+      country: ''
     }
   };
+  handleCountryChange = async (country) => {
+    if(country === 'global'){
+      this.setState({
+        country: ''
+      })
+    } else {
+      const response = await axios.get(`${this.state.url}/countries/${country}`);
+      let { confirmed, recovered, deaths, lastUpdate } = response.data;
+        this.setState({
+          confirmed,
+          recovered,
+          deaths,
+          lastUpdate,
+          country
+        });
+    }
+  }
   fetchDailyData = async () => {
     try
     {
@@ -45,14 +64,14 @@ class App extends React.Component{
   }
   componentDidMount(){
     this.fetchAllData();
-    // this.fetchDailyData();
   }
   render(){
     return (
       <div className="container">
+        <img src={image} className="image"/>
         <Cards data={this.state} />
-        <CountryPicker />
-        <Chart data={this.state.dailyData}/>
+        <CountryPicker handleCountryChange={this.handleCountryChange}/>
+        <Chart data={this.state} country={this.state.country}/>
       </div>
     );
   }

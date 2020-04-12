@@ -5,6 +5,7 @@ import styles from './Chart.module.css';
 
 
 export default function Chart(props) {
+    console.log(props)
     const [dailyData, setDailyData] = useState([]);
     const url = "https://covid19.mathdro.id/api";
 
@@ -22,7 +23,6 @@ export default function Chart(props) {
         };
         fetchDailyData();
     }, []);
-    console.log(dailyData)
     const lineChart = dailyData[0] ? (
       <Line
         data={{
@@ -32,24 +32,51 @@ export default function Chart(props) {
           datasets: [
             {
               data: dailyData.map(({ confirmed }) => confirmed),
-              label: 'Infected',
-              borderColor: '#333ff',
-              fill: true
+              label: "Infected",
+              borderColor: "rgba(0, 0, 255, 0.5)",
+              //   backgroundColor: 'rgba(0, 0, 255, 0.5)',
+              fill: true,
             },
             {
               data: dailyData.map(({ deaths }) => deaths),
-              label: 'Deceased',
-              borderColor: 'red',
-              backgroundColor: 'rgba(255, 0, 0, 0.5)',
-              fill: true
+              label: "Deceased",
+              borderColor: "red",
+              backgroundColor: "rgba(255, 0, 0, 0.5)",
+              fill: true,
             },
           ],
         }}
       />
     ) : null;
+    const barChart = (
+        props.data.confirmed ? (
+            <Bar 
+                data={{
+                    labels: ['Infected', 'Recovered', 'Deaths'],
+                    datasets: [{
+                        label: 'People',
+                        backgroundColor: [
+                            'rgba(0, 0, 225, 0.5)',
+                            'rgba(0, 225, 0, 0.5)',
+                            'rgba(225, 0, 225, 0.5)'
+                        ],
+                        data: [
+                            props.data.confirmed.value,
+                            props.data.recovered.value,
+                            props.data.deaths.value
+                        ]
+                    }],
+                }}
+                options={{
+                    legend: {display: false},
+                    title: {display: true, text: `Current state in ${props.country}`}
+                }}
+            />
+        ) : ''
+    )
     return (
         <div className={styles.container}>
-            {lineChart}
+            {props.country ? barChart : lineChart}
         </div>
     )
 }
