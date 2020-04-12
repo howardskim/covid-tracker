@@ -46,7 +46,7 @@ export default function Cards(props) {
                 />
                 </Typography>
                 <Typography color="textSecondary" gutterBottom>{new Date(lastUpdate).toDateString()}</Typography>
-              <Typography variant="body2" gutterBottom>Number of active cases of COVID-19</Typography>
+              <Typography variant="body2" gutterBottom>Number of recovered cases of COVID-19</Typography>
             </CardContent>
           </Grid>
         <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.deaths)}>
@@ -63,7 +63,7 @@ export default function Cards(props) {
                 />
                   </Typography>
                 <Typography color="textSecondary" gutterBottom>{new Date(lastUpdate).toDateString()}</Typography>
-              <Typography variant="body2" gutterBottom>Number of active cases of COVID-19</Typography>
+              <Typography variant="body2" gutterBottom>Number of deceased cases of COVID-19</Typography>
             </CardContent>
           </Grid>
         </Grid>

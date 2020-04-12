@@ -68,10 +68,11 @@ class App extends React.Component{
   render(){
     return (
       <div className="container">
-        <img src={image} className="image"/>
+        <img src={image} className="image" />
+        <small>By Howard Kim 🤢 </small>
         <Cards data={this.state} />
-        <CountryPicker handleCountryChange={this.handleCountryChange}/>
-        <Chart data={this.state} country={this.state.country}/>
+        <CountryPicker handleCountryChange={this.handleCountryChange} />
+        <Chart data={this.state} country={this.state.country} />
       </div>
     );
   }
